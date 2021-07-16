@@ -15,7 +15,6 @@ body {
 .container {
   display:flex;
   min-height: 100vh;
-  background-size:
 }
 
 .left {
@@ -39,8 +38,12 @@ h1 {
   font-size: 60px;
   text-transform: uppercase;
   letter-spacing: 10px;
+  margin-bottom: 0;
   line-height: 1.1;
+  transform: translateX(-100%);
+  animation: comeinleft 0.5s ease forwards;
 }
+
 
 h1 span {
   color: hsl(0, 36%, 70%);
@@ -50,23 +53,37 @@ h1 span {
 p {
   color: hsl(0, 36%, 70%);
   letter-spacing: 1px;
+  margin: 30px 0;
   line-height: 30px;
+  transform: translateX(100%);
+  animation: comeinright 0.5s ease forwards;
+}
+
+
+
+.inner-container {
+  max-width: 500px;
 }
 
 form {
   position: relative;
 }
 
+form.error {
+  display: block;
+}
+
 input {
   background: transparent;
-  border: 1px solid hsl(0, 36%, 70%);
+  border: 2px solid hsl(0, 36%, 70%);
   padding: 15px;
   border-radius: 50px;
   width: 100%;
   height: 53px;
   font-size: 16px;
-
 }
+
+
 
 button {
   background-image: Linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
@@ -77,19 +94,84 @@ button {
   position: absolute;
   top: 0px;
   right: 0px;
-  box-shadow: 2px 3px 5px hsl(0, 36%, 70%);
+  box-shadow: 2px 2px 5px hsl(0, 36%, 70%);
+  transition: opacity 0.05 ease;
 }
 
-small {
-
+button:hover {
+  opacity: .7;
 }
 
 .error-icon {
+  display: none;
   position: absolute;
   top: 0;
   right: 110px;
   transform: translatey(55%);
 }
+
+form.error .error-icon {
+  display: block;
+}
+
+form.error input {
+  border: 2px solid hsl(0, 93%, 68%);
+}
+form.success input {
+  border: 2px solid hsl(0, 36%, 70%);
+}
+
+small {
+  display: none;
+  color: hsl(0, 93%, 68%);
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
+form.error small {
+  display: block;
+}
+
+.bg-mobile {
+  display: none;
+}
+
+
+
+/* ANIMATIONS */
+
+@keyframes comeinright {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes comeinleft {
+  to {
+    transform: translateX(0)
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .bg-mobile {
+    display: block;
+    width: 100%;
+    margin-left: -40px;
+    margin-right: -40px;
+    width: calc(100% + 80px)
+  }
+
+  .left {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+
+  .right {
+    display: none;
+  }
+}
+
 
 
 
